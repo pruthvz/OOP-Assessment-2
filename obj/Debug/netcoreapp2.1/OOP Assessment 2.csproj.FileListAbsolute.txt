@@ -1,0 +1,11 @@
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\bin\Debug\netcoreapp2.1\OOP Assessment 2.deps.json
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\bin\Debug\netcoreapp2.1\OOP Assessment 2.runtimeconfig.json
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\bin\Debug\netcoreapp2.1\OOP Assessment 2.runtimeconfig.dev.json
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\bin\Debug\netcoreapp2.1\OOP Assessment 2.dll
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\bin\Debug\netcoreapp2.1\OOP Assessment 2.pdb
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\obj\Debug\netcoreapp2.1\OOP Assessment 2.csprojAssemblyReference.cache
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\obj\Debug\netcoreapp2.1\OOP Assessment 2.csproj.CoreCompileInputs.cache
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\obj\Debug\netcoreapp2.1\OOP Assessment 2.AssemblyInfoInputs.cache
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\obj\Debug\netcoreapp2.1\OOP Assessment 2.AssemblyInfo.cs
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\obj\Debug\netcoreapp2.1\OOP Assessment 2.dll
+D:\aProgrammingFile\Uni-code\OOP Assignment\OOP Assessment 2\obj\Debug\netcoreapp2.1\OOP Assessment 2.pdb
