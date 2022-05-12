@@ -11,6 +11,7 @@ namespace OOP_Assessment_2
         const int MAX = 7;
         public int dieRolledValue;
         public int dieReroll;
+
         private Random die = new Random();
         public int rollDice()
         {

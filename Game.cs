@@ -10,9 +10,11 @@ namespace OOP_Assessment_2
         public static List<Player> Players;
         public static int NumberOfRounds = 1;
         public int[] diceValues = new int[5];
+        public static int RoundScore { get; set; }
         public bool reRoll = false;
         public int amountOfRerolls = 0; 
-        public int score{ get; set; }
+
+        public List<int> CompareScores = new List<int>() {}; // saves the players scores. 2 is more preferable.
 
         public int Setup()
         {
@@ -75,15 +77,20 @@ namespace OOP_Assessment_2
                     Console.WriteLine("Player " + p.PlayerNo + " " + p.Name + " Turn");
                     Die dieObject = new Die();
 
-                    for (int j = 0; j < diceValues.Length; j++)
-                    {
-                        int dieValue = dieObject.rollDice();
-                        diceValues[j] = dieValue;
-                    }
-                    CountDuplicates(diceValues);
+                    // for (int j = 0; j < diceValues.Length; j++)
+                    // {
+                    //     int dieValue = dieObject.rollDice();
+                    //     diceValues[j] = dieValue;
+                    // }
+                    // CountDuplicates(diceValues);
+                    p.RollingDice();
+                    CompareScores.Add(RoundScore);
+                    DisplayScore();
                 }
+                GetRoundWinner(players);
           
             }
+            DisplayWinner();      
 
         }
 
@@ -105,7 +112,7 @@ namespace OOP_Assessment_2
         }
 
 
-        private void CountDuplicates(int[] array)
+        public void CountDuplicates(int[] array)
         {
             var dict = new Dictionary<int, int>();
             Die dieObj = new Die();
@@ -125,21 +132,6 @@ namespace OOP_Assessment_2
                     array = Array.FindAll(array, i => i != pair.Key).ToArray();
                     amountOfRerolls++;
                 }
-                // if(pair.Value == 3){
-                //     Console.WriteLine("you scored 3 points");
-                //     score+=3;
-                // }
-                // else if(pair.Value == 4)
-                // {
-                //     Console.WriteLine("you scored 6 points");
-                //     score+=6;
-                // }
-                // else if(pair.Value == 5)
-                // {
-                //     Console.WriteLine("you scored 12 points");
-                //     score+=12;
-                // }
-
             }
             for(int reRoll = 0; reRoll < amountOfRerolls; reRoll++)
             {
@@ -151,8 +143,9 @@ namespace OOP_Assessment_2
             {
                 Console.WriteLine(i);
             }
+
             AssignScore(array);
-            DisplayScore();
+            // DisplayScore();
             ResetGameForNextPlayer(array); 
 
         }
@@ -175,27 +168,69 @@ namespace OOP_Assessment_2
                 {
                     if(pair.Value == 3)
                     {
-                        Console.WriteLine("You scored ++ 3 points");
-                        score+=3;
+                        Console.WriteLine(">> You Scored 3 points");
+                        RoundScore = 3;
                     }
                     else if (pair.Value == 4)
                     {
-                        Console.WriteLine("You scored ++ 6 points");
-                        score+=6;
+                        Console.WriteLine(">> You Scored 6 points");
+                        RoundScore = 6;
                     }
                     else if (pair.Value == 5)
                     {
-                        Console.WriteLine("You scored ++ 12 points");
-                        score+=12;
+                        Console.WriteLine(">> You Scored 12 points");
+                        RoundScore = 12;
                     }
                 }
-
             }
         }
  
         public void DisplayScore()
         {
-            Console.WriteLine("Your score is " + score);
+            Console.WriteLine("> Your Total Round Score was :" + RoundScore);
+            RoundScore = 0; //reset value
+        }
+
+        private static void GetRoundWinner(List<Player> players)
+        {
+            int maxScore = 6;
+            List<Player> winners = new List<Player>();
+
+            foreach(Player p in players)
+            {
+                if(p.RoundScore >= maxScore)
+                {
+                    p.IncrementPlayerWins();
+                }
+            }
+        }
+
+        private void ViewScores()
+        {
+            foreach(int i in CompareScores)
+            {
+                Console.WriteLine(i);
+            }
+        }
+        private void DisplayWinner()
+        {
+            List<Player> winners = new List<Player>();
+            int PLAYER1_SCORE = CompareScores[0];
+            int PLAYER2_SCORE = CompareScores[1];
+
+            if (PLAYER1_SCORE > PLAYER2_SCORE)
+            {
+                Console.WriteLine("Player 1 Won!!");
+            }
+            else if (PLAYER1_SCORE < PLAYER2_SCORE)
+            {
+                Console.WriteLine("Player 2 Won!!");
+            }
+            else
+            {
+                Console.WriteLine("Tie!!");
+            }
+
         }
 
         private void ResetGameForNextPlayer(int[] array){
