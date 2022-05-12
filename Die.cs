@@ -10,6 +10,7 @@ namespace OOP_Assessment_2
         const int MIN = 1;
         const int MAX = 7;
         public int dieRolledValue;
+        public int dieReroll;
         private Random die = new Random();
         public int rollDice()
         {
@@ -21,6 +22,21 @@ namespace OOP_Assessment_2
             Console.ReadKey(); 
 
             return dieRolledValue;
+        }
+
+
+        public int ReRollDice(int numberOfRolls)
+        {
+            Console.WriteLine("You have remaining of " + numberOfRolls + " left");
+            Console.ReadKey();
+            numberOfRolls--;
+
+            dieReroll = die.Next(MIN,MAX);
+            Console.WriteLine("You rolled a " + dieReroll);
+
+            return dieReroll;
+
+            
         }
     }
 }

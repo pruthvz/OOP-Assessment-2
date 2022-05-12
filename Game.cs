@@ -10,6 +10,8 @@ namespace OOP_Assessment_2
         public static List<Player> Players;
         public static int NumberOfRounds = 1;
         public int[] diceValues = new int[5];
+        public bool reRoll = false;
+        public int amountOfRerolls = 0; 
         public int Setup()
         {
             Console.WriteLine("Press any key to start the game. Press Q to Quit the program.");
@@ -91,7 +93,7 @@ namespace OOP_Assessment_2
             }
          
         }
-
+    
         public void CheckingForDupRolls(int[] checkDupValues)
         {
             int duplicateCount;
@@ -104,6 +106,7 @@ namespace OOP_Assessment_2
         private void CountDuplicates(int[] array)
         {
             var dict = new Dictionary<int, int>();
+            Die dieObj = new Die();
 	
             foreach(var value in array)
             {
@@ -115,15 +118,60 @@ namespace OOP_Assessment_2
             foreach(var pair in dict)
             {
 			    Console.WriteLine("Value {0} occurred {1} times.", pair.Key, pair.Value);
-                if(pair.Value < 2){
-                    Console.WriteLine("re-roll dice");
+                if(pair.Value <= 1){
+                    amountOfRerolls++;
                 }
-                else if(pair.Value == 3){
+                if(pair.Value == 3){
                     Console.WriteLine("you scored 3 points");
                 }
                 else if(pair.Value == 4)
                 {
                     Console.WriteLine("you scored 6 points");
+                }
+
+            }
+            for(int reRoll = 0; reRoll < amountOfRerolls; reRoll++)
+            {
+                int rerollValue = dieObj.ReRollDice(amountOfRerolls);
+                diceValues = diceValues.Concat(new int[] {rerollValue}).ToArray();
+            }
+
+            foreach(int i in diceValues)
+            {
+                Console.WriteLine(i);
+            }
+            AssignScore(diceValues);
+        }
+
+
+        private void AssignScore(int[] arr)
+        {
+            var dict = new Dictionary<int, int>();
+            foreach(var value in arr)
+            {
+                if(dict.ContainsKey(value))
+                {
+                    dict[value]++;
+                }
+                else
+                {
+                    dict[value] = 1;
+                }
+
+                foreach(var pair in dict)
+                {
+                    if(pair.Value == 3)
+                    {
+                        Console.WriteLine("You scored ++ 3 points");
+                    }
+                    else if (pair.Value == 4)
+                    {
+                        Console.WriteLine("You scored ++ 6 points");
+                    }
+                    else if (pair.Value == 5)
+                    {
+                        Console.WriteLine("You scored ++ 12 points");
+                    }
                 }
 
             }
