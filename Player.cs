@@ -22,7 +22,7 @@ namespace OOP_Assessment_2
         
         public string Name { get; set; }
         public int PlayerNo{ get; set; }     
-        
+        public int RoundScore { get; set; }
         private void AskPlayerName()
         {
             try

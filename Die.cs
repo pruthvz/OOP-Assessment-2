@@ -27,9 +27,9 @@ namespace OOP_Assessment_2
 
         public int ReRollDice(int numberOfRolls)
         {
-            Console.WriteLine("You have remaining of " + numberOfRolls + " left");
-            Console.ReadKey();
+            Console.WriteLine("You have remaining of " + numberOfRolls + " rolls left.");
             numberOfRolls--;
+            Console.ReadKey();
 
             dieReroll = die.Next(MIN,MAX);
             Console.WriteLine("You rolled a " + dieReroll);

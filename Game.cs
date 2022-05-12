@@ -6,12 +6,14 @@ namespace OOP_Assessment_2
 {
     class Game
     {
-        const int NUMBER_OF_PLAYERS = 1;
+        const int NUMBER_OF_PLAYERS = 2;
         public static List<Player> Players;
         public static int NumberOfRounds = 1;
         public int[] diceValues = new int[5];
         public bool reRoll = false;
         public int amountOfRerolls = 0; 
+        public int score{ get; set; }
+
         public int Setup()
         {
             Console.WriteLine("Press any key to start the game. Press Q to Quit the program.");
@@ -119,31 +121,42 @@ namespace OOP_Assessment_2
             {
 			    Console.WriteLine("Value {0} occurred {1} times.", pair.Key, pair.Value);
                 if(pair.Value <= 1){
+                    // var numIndex = array.Where(x=>x ==pair.Value);
+                    array = Array.FindAll(array, i => i != pair.Key).ToArray();
                     amountOfRerolls++;
                 }
-                if(pair.Value == 3){
-                    Console.WriteLine("you scored 3 points");
-                }
-                else if(pair.Value == 4)
-                {
-                    Console.WriteLine("you scored 6 points");
-                }
+                // if(pair.Value == 3){
+                //     Console.WriteLine("you scored 3 points");
+                //     score+=3;
+                // }
+                // else if(pair.Value == 4)
+                // {
+                //     Console.WriteLine("you scored 6 points");
+                //     score+=6;
+                // }
+                // else if(pair.Value == 5)
+                // {
+                //     Console.WriteLine("you scored 12 points");
+                //     score+=12;
+                // }
 
             }
             for(int reRoll = 0; reRoll < amountOfRerolls; reRoll++)
             {
                 int rerollValue = dieObj.ReRollDice(amountOfRerolls);
-                diceValues = diceValues.Concat(new int[] {rerollValue}).ToArray();
+                array = array.Concat(new int[] {rerollValue}).ToArray();
             }
 
-            foreach(int i in diceValues)
+            foreach(int i in array)
             {
                 Console.WriteLine(i);
             }
-            AssignScore(diceValues);
+            AssignScore(array);
+            DisplayScore();
+            ResetGameForNextPlayer(array); 
+
         }
-
-
+        
         private void AssignScore(int[] arr)
         {
             var dict = new Dictionary<int, int>();
@@ -163,21 +176,31 @@ namespace OOP_Assessment_2
                     if(pair.Value == 3)
                     {
                         Console.WriteLine("You scored ++ 3 points");
+                        score+=3;
                     }
                     else if (pair.Value == 4)
                     {
                         Console.WriteLine("You scored ++ 6 points");
+                        score+=6;
                     }
                     else if (pair.Value == 5)
                     {
                         Console.WriteLine("You scored ++ 12 points");
+                        score+=12;
                     }
                 }
 
             }
         }
  
+        public void DisplayScore()
+        {
+            Console.WriteLine("Your score is " + score);
+        }
 
-
+        private void ResetGameForNextPlayer(int[] array){
+            array  = new int[0];
+            amountOfRerolls = 0;
+        }
     }
 }
