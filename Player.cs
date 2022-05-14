@@ -9,7 +9,6 @@ namespace OOP_Assessment_2
     {
         public string Name { get; set; }
         public int PlayerNo{ get; set; }     
-        public int Wins { get; set; }
         public int RoundScore { get; set; }
         public Player(int playerNumber, bool anyAI = false)
         {
@@ -44,11 +43,6 @@ namespace OOP_Assessment_2
                 Console.WriteLine(e.Message);
             }
 
-        }
-
-        public void IncrementPlayerWins()
-        {
-            Wins++;
         }
 
         public int RollingDice()

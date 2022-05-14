@@ -8,13 +8,14 @@ namespace OOP_Assessment_2
     {
         const int NUMBER_OF_PLAYERS = 2;
         public static List<Player> Players;
-        public static int NumberOfRounds = 1;
+        public static int NumberOfRounds = 2;
         public int[] diceValues = new int[5];
         public static int RoundScore { get; set; }
         public bool reRoll = false;
         public int amountOfRerolls = 0; 
 
         public List<int> CompareScores = new List<int>() {}; // saves the players scores. 2 is more preferable.
+        public List<int> TotalWins = new List<int>() {0,0}; // saves all the wins. 
 
         public int Setup()
         {
@@ -87,10 +88,9 @@ namespace OOP_Assessment_2
                     CompareScores.Add(RoundScore);
                     DisplayScore();
                 }
-                GetRoundWinner(players);
-          
+                DisplayWinner();      
             }
-            DisplayWinner();      
+            DisplayWins(TotalWins[0], TotalWins[1]);
 
         }
 
@@ -191,20 +191,6 @@ namespace OOP_Assessment_2
             RoundScore = 0; //reset value
         }
 
-        private static void GetRoundWinner(List<Player> players)
-        {
-            int maxScore = 6;
-            List<Player> winners = new List<Player>();
-
-            foreach(Player p in players)
-            {
-                if(p.RoundScore >= maxScore)
-                {
-                    p.IncrementPlayerWins();
-                }
-            }
-        }
-
         private void ViewScores()
         {
             foreach(int i in CompareScores)
@@ -218,19 +204,44 @@ namespace OOP_Assessment_2
             int PLAYER1_SCORE = CompareScores[0];
             int PLAYER2_SCORE = CompareScores[1];
 
+
             if (PLAYER1_SCORE > PLAYER2_SCORE)
             {
-                Console.WriteLine("Player 1 Won!!");
+                Console.WriteLine("→ Player 1 won this round.");
+                TotalWins[0]++;
+                
             }
             else if (PLAYER1_SCORE < PLAYER2_SCORE)
             {
-                Console.WriteLine("Player 2 Won!!");
+                Console.WriteLine("→ Player 2 won this round.");
+                TotalWins[1]++;
             }
             else
             {
                 Console.WriteLine("Tie!!");
             }
 
+            CompareScores.Clear();
+            Console.WriteLine(">> PLAYER STATS → PLAYER1 WINS " + TotalWins[0] + " PLAYER 2 WINS "  + TotalWins[1]);
+        }
+
+        public void DisplayWins(int player1Wins, int player2Wins)
+        {
+            if(player1Wins > player2Wins)
+            {
+                Console.WriteLine(">> Congrats PLAYER 1 you have won the game!");
+            }
+            else if(player1Wins < player2Wins)
+            {
+                Console.WriteLine(">> Congrats PLAYER 2 you have won the game!");
+            }
+            else
+            {
+                Console.WriteLine(">> It was a tie!!");
+            }
+            // Console.WriteLine(TotalWins[0] + " " +  TotalWins[1]);
+            TotalWins[0] = 0;
+            TotalWins[1] = 0;
         }
 
         private void ResetGameForNextPlayer(int[] array){
