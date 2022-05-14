@@ -6,9 +6,7 @@ namespace OOP_Assessment_2
 {
     class Game
     {
-        const int NUMBER_OF_PLAYERS = 2;
         public static List<Player> Players;
-        public static int NumberOfRounds = 2;
         public int[] diceValues = new int[5];
         public static int RoundScore { get; set; }
         public bool reRoll = false;
@@ -37,10 +35,16 @@ namespace OOP_Assessment_2
 
         public void Start()
         {
-            GetPlayers();
-            DisplayPlayers();
-            Begin(Players);
-            Setup();
+            if(GameSettings.NumberOfPlayers <= 1)
+            {
+                Console.WriteLine("Please change the Number of Players == 2, No more than 2.");
+            }
+            else{
+                GetPlayers();
+                DisplayPlayers();
+                Begin(Players);
+                Setup();
+            }
             
         }
 
@@ -52,7 +56,7 @@ namespace OOP_Assessment_2
         public void GetPlayers()
         {
             Players = new List<Player>();
-            for (int i = 1; i <= NUMBER_OF_PLAYERS; i++)
+            for (int i = 1; i <= GameSettings.NumberOfPlayers ; i++)
             {
                 Player player = new Player(i);
                 Players.Add(player);
@@ -71,7 +75,7 @@ namespace OOP_Assessment_2
 
         public void Begin(List<Player> players)
         {
-            for (int i = 1; i <= NumberOfRounds; i++)
+            for (int i = 1; i <= GameSettings.TotalRounds; i++)
             {
                 foreach(Player p in players)
                 {
@@ -218,9 +222,9 @@ namespace OOP_Assessment_2
             }
             else
             {
-                Console.WriteLine("Tie!!");
             }
 
+                Console.WriteLine("→ Tie!!");
             CompareScores.Clear();
             Console.WriteLine(">> PLAYER STATS → PLAYER1 WINS " + TotalWins[0] + " PLAYER 2 WINS "  + TotalWins[1]);
         }

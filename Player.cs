@@ -44,7 +44,6 @@ namespace OOP_Assessment_2
             }
 
         }
-
         public int RollingDice()
         {
             Game gameObj = new Game();
