@@ -17,6 +17,8 @@ namespace OOP_Assessment_2
 
         public int Setup()
         {
+            GameSettings settingObj = new GameSettings();
+            settingObj.GameRules();
             Console.WriteLine("Press any key to start the game. Press Q to Quit the program.");
             
             string start = string.Empty;
@@ -39,15 +41,14 @@ namespace OOP_Assessment_2
             {
                 Console.WriteLine("Please change the Number of Players == 2, No more than 2.");
             }
-            else{
+            else
+            {
                 GetPlayers();
                 DisplayPlayers();
                 Begin(Players);
                 Setup();
             }
-            
         }
-
         public static int Quit()
         {
             return 0;
@@ -222,9 +223,9 @@ namespace OOP_Assessment_2
             }
             else
             {
+                Console.WriteLine("→ Tie!!");
             }
 
-                Console.WriteLine("→ Tie!!");
             CompareScores.Clear();
             Console.WriteLine(">> PLAYER STATS → PLAYER1 WINS " + TotalWins[0] + " PLAYER 2 WINS "  + TotalWins[1]);
         }
@@ -244,8 +245,21 @@ namespace OOP_Assessment_2
                 Console.WriteLine(">> It was a tie!!");
             }
             // Console.WriteLine(TotalWins[0] + " " +  TotalWins[1]);
-            TotalWins[0] = 0;
-            TotalWins[1] = 0;
+            try 
+            {
+                TotalWins[0] = 0;
+                TotalWins[1] = 0;
+            }
+           catch(IndexOutOfRangeException)
+            {
+                Console.WriteLine("An index was out of range!");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Some sort of error occured: " + ex.Message);
+            }
+
+            Console.WriteLine("\n");
         }
 
         private void ResetGameForNextPlayer(int[] array){

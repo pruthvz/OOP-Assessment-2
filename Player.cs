@@ -42,7 +42,6 @@ namespace OOP_Assessment_2
             {
                 Console.WriteLine(e.Message);
             }
-
         }
         public int RollingDice()
         {
@@ -53,6 +52,18 @@ namespace OOP_Assessment_2
             {
                 int dieValue = dieObj.rollDice();
                 gameObj.diceValues[j] = dieValue;
+                try
+                {
+                    if(dieValue <= 0 || dieValue >= 7)
+                    {
+                        throw new SystemException();
+                    }
+                }
+                catch(Exception)
+                {
+                    Console.WriteLine("Dice Values have to be in between 1-6");
+                }
+                
             }
             gameObj.CountDuplicates(gameObj.diceValues);
             return rollValue;
