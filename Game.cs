@@ -40,7 +40,7 @@ namespace OOP_Assessment_2
         public void Start()
         {
             // if the number of players is = 1 then the game cannot start, since the game is meant for 2 players.
-            if(GameSettings.NumberOfPlayers <= 1)
+            if(GameSettings.NumberOfPlayers <= 1 || GameSettings.NumberOfPlayers > 2)
             {
                 Console.WriteLine("Please change the Number of Players == 2, No more than 2.");
             }
