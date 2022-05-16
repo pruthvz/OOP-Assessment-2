@@ -7,9 +7,11 @@ namespace OOP_Assessment_2
 {
     class GameSettings
     {
+        // these public variables are hard coded right now. But it can be assigned using user input.
         public static int TotalRounds { get; set; } = 2;
         public static int NumberOfPlayers  {get; set;} = 2;
-   
+
+        // a basic game rule display for the game.
         public void GameRules()
         {
             Console.WriteLine("The score will be determined by amount of same rolls you get.");

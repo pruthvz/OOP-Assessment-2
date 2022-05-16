@@ -7,6 +7,7 @@ namespace OOP_Assessment_2
 {
     class Player
     {
+        // player objects.
         public string Name { get; set; }
         public int PlayerNo{ get; set; }     
         public int RoundScore { get; set; }
@@ -23,8 +24,10 @@ namespace OOP_Assessment_2
                 AskPlayerName();
             }
         }
+        // AskPlayerName will simply take the players name.
         private void AskPlayerName()
         {
+            // a try and catch statement will check whether a string is given or not.
             try
             {
                 
@@ -43,6 +46,8 @@ namespace OOP_Assessment_2
                 Console.WriteLine(e.Message);
             }
         }
+
+        // player roll dice. simply rolls the dice for the player 5 times
         public int RollingDice()
         {
             Game gameObj = new Game();
@@ -52,6 +57,7 @@ namespace OOP_Assessment_2
             {
                 int dieValue = dieObj.rollDice();
                 gameObj.diceValues[j] = dieValue;
+                // a try catch error to see if the die value is above 6 or less than 1.
                 try
                 {
                     if(dieValue <= 0 || dieValue >= 7)
@@ -66,7 +72,7 @@ namespace OOP_Assessment_2
                 
             }
             gameObj.CountDuplicates(gameObj.diceValues);
-            return rollValue;
+            return rollValue; // returns the die Value to the main function.
         }
     }
 }
