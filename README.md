@@ -5,7 +5,7 @@
 # You can clone the repo through GitHub or use the terminal to clone it.
 
 ```
-git clone https://github.com/pruthvz/Assessment1_SupportingCode.git
+git clone https://github.com/pruthvz/OOP-Assessment-2.git
 ```
 
 # Requirements to run this project.
